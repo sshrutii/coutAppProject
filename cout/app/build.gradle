@@ -11,7 +11,8 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
+        buildConfigField("String", "API_ID", '"a822172d11e300b512cd3138d9542e8c"')
+        buildConfigField("String", "API_SECRET", '"880e5ea8c48adc837be2cae9d9171260be5b0cba6cbe378624dc0d072d31a928"')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -32,4 +33,11 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.google.firebase:firebase-analytics:17.5.0'//
     implementation 'com.google.firebase:firebase-auth:19.4.0'//
+
+    // retrofit, gson
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
+
 }

@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".CodeActivity"></activity>
+        <activity android:name=".CompilerActivity" />
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".PlaygroundActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".SecondActivity" />
