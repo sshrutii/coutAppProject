@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".CodeActivity"></activity>
-        <activity android:name=".CompilerActivity" />
+        <activity android:name=".QuestionsActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".PlaygroundActivity" />
         <activity android:name=".RegistrationActivity" />
