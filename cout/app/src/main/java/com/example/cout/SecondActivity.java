@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class SecondActivity extends AppCompatActivity {
-    private ImageButton prof,questions ;
+    private ImageButton prof,questions,score ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,13 @@ public class SecondActivity extends AppCompatActivity {
                 startActivity(new Intent(SecondActivity.this, QuestionsActivity.class));
             }
         });
+        score.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SecondActivity.this, activity_leaderboard.class));
+            }
+        });
+
 
     }
 
@@ -36,5 +43,6 @@ public class SecondActivity extends AppCompatActivity {
 
         prof = (ImageButton)findViewById(R.id.btnprof);
         questions = (ImageButton) findViewById(R.id.btncode);
+        score  = (ImageButton)findViewById(R.id.btnLeaderboard);
     }
 }

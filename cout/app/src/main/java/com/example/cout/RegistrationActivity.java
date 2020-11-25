@@ -1,8 +1,5 @@
 package com.example.cout;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,12 +7,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -38,8 +40,10 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(validate())        // if nothing blank
                 {
-                    String user_email = userEmail.getText().toString();          // current mail,pw
+                    final Integer score = 0,questionsSolved=0;
+                    final String user_email = userEmail.getText().toString();          // current mail,pw
                     String user_password = userPassword.getText().toString();
+                    final FirebaseFirestore db= FirebaseFirestore.getInstance();
                     //authenticating it
                     firebaseAuth.createUserWithEmailAndPassword(user_email,user_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -47,10 +51,24 @@ public class RegistrationActivity extends AppCompatActivity {
 
                             if(task.isSuccessful())  //if authentication successful,added to the database and redirected to login page
                             {
-                                sendEmailVerification();
+                                Toast.makeText(RegistrationActivity.this,"Registration Successful ",Toast.LENGTH_LONG).show();
+
+                                //sendEmailVerification();
+                                Map<String, Object> data = new HashMap<>();
+                                data.put("name", userName.getText().toString());
+                                data.put("Score", score);
+                                data.put("questionsSolved", questionsSolved);
+
+                                //to get user UID
+                                String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                                db.collection("UsersInfo").document(currentuser).set(data);
+                                System.out.println("successfully created document");
+                                startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
                             }
                             else {
                                 Toast.makeText(RegistrationActivity.this,"Registration Failed!",Toast.LENGTH_SHORT).show();
+                                System.out.println("not created document");
                             }
                         }
                     });
