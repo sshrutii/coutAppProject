@@ -1,51 +1,118 @@
 package com.example.cout;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.EventListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+class questionName {
+    String id,name;
+    questionName(String id){
+        id = "";
+        name = "NULL";
+    }
+    void setId(String id,int num){
+        this.id = id;
+        this.name = "Question" + num;
+    }
+}
+
 public class QuestionsActivity extends AppCompatActivity {
-    TextView question;
+
 
     // Access a Cloud Firestore instance from your Activity
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-//    CollectionReference colRef = db.collection("questions").addSnapshotListener(new EventListener<QuerySnapshot>() {
-//        @Override
-//        public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-//
-//        }
-//    });
+    ArrayList <questionName> myQuestionNames = new ArrayList<questionName>();
+
+//    List<String> idList;
+
+    void getDocumentIds() {
+
+
+
+
+    }
+    ArrayList<String> idArrayList = new ArrayList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_questions);
-        question = (TextView) findViewById(R.id.question1);
-        question.setOnClickListener(new View.OnClickListener() {
+        myQuestionNames.clear();
+        db.collection("questions").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(QuestionsActivity.this,CodeActivity.class));
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    int count = 1;
+                    for (QueryDocumentSnapshot document: task.getResult()){
+                        Log.d("tag",document.getId());
+                        String id = ""+ document.getId()+"";
+                        questionName temp = new questionName(id);
+                        temp.setId(id + "",count++);
+                        myQuestionNames.add(temp);
+                    }
+                    Log.d("tag",myQuestionNames.get(0).name);
+                    int n = myQuestionNames.size();
+                    Log.d("tag",n+"");
+                    for (int i=0;i<n;i++){
+                        idArrayList.add(myQuestionNames.get(i).name + "");
+                    }
+                }
+                else {
+                    Log.d("TAG", "Error getting documents: ", task.getException());
+                }
             }
         });
+
+
+
+        final ArrayAdapter <String> questionsArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,idArrayList);
+
+        final ListView questionsListView = (ListView) findViewById(R.id.questionsListView);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+
+                questionsListView.setAdapter(questionsArrayAdapter);
+                questionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(QuestionsActivity.this,CodeActivity.class);
+                       Log.d("idQ",idArrayList.get(position)+"");
+                        intent.putExtra("id",myQuestionNames.get(position).id);
+                        startActivity(intent);
+
+                    }
+                });
+            }
+        },3000);
+
+
+
     }
 }
 

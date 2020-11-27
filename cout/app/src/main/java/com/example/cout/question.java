@@ -5,7 +5,7 @@ import android.util.Log;
 import java.util.List;
 
 public class question {
-    public String header,answer_1,answer_2,testCase,question,publicAnswer, privateAnswer;
+    public String header,answer_1,answer_2,testCase,question,publicAnswer, privateAnswer,privateTestCaseOutput;
     question(){
         this.header = "";
         this.question="";
