@@ -12,8 +12,8 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        buildConfigField("String", "API_ID", '"a822172d11e300b512cd3138d9542e8c"')
-        buildConfigField("String", "API_SECRET", '"880e5ea8c48adc837be2cae9d9171260be5b0cba6cbe378624dc0d072d31a928"')
+        buildConfigField("String", "API_ID", '"5b3cca6ca274d1cd2bd2e7bf401f7b4"')
+        buildConfigField("String", "API_SECRET", '"16ddc001942e4c093f126006a53cdecbe9c1030545379347ceeee85e952f68d"')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
