@@ -53,7 +53,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             {
                                 Toast.makeText(RegistrationActivity.this,"Registration Successful ",Toast.LENGTH_LONG).show();
 
-                                //sendEmailVerification();
+                                sendEmailVerification();
                                 Map<String, Object> data = new HashMap<>();
                                 data.put("name", userName.getText().toString());
                                 data.put("Score", score);
@@ -64,7 +64,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                                 db.collection("UsersInfo").document(currentuser).set(data);
                                 System.out.println("successfully created document");
-                                startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
+//                                startActivity(new Intent(RegistrationActivity.this,SecondActivity.class));
                             }
                             else {
                                 Toast.makeText(RegistrationActivity.this,"Registration Failed!",Toast.LENGTH_SHORT).show();
