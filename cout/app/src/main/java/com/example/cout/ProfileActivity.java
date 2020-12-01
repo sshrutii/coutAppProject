@@ -3,6 +3,7 @@ package com.example.cout;
 import android.util.Log;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -26,6 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private TextView nameLabel;
     private TextView scoreLabel;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,20 +55,31 @@ public class ProfileActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         System.out.println("email:  "+currentUser.getEmail()+" UID: "+currentUser.getUid());
-        final FirebaseFirestore db= FirebaseFirestore.getInstance();
-        nameLabel.setText("Fetching data");
-        db.collection("UsersInfo").document(currentUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        final DocumentReference docRef = db.collection("UsersInfo").document(currentUser.getUid());
+        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        nameLabel.setText("Name: "+document.get("name"));
-                        scoreLabel.setText("Score: "+document.get("Score"));
-                    }
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if(value!=null && value.exists()){
+                    nameLabel.setText("Name: "+value.get("name"));
+                    scoreLabel.setText("Score: "+value.get("Score"));
+
                 }
             }
         });
+//        final FirebaseFirestore db= FirebaseFirestore.getInstance();
+//        nameLabel.setText("Fetching data");
+//        db.collection("UsersInfo").document(currentUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    DocumentSnapshot document = task.getResult();
+//                    if (document.exists()) {
+//                        nameLabel.setText("Name: "+document.get("name"));
+//                        scoreLabel.setText("Score: "+document.get("Score"));
+//                    }
+//                }
+//            }
+//        });
 
 
 

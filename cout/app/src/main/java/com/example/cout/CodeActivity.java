@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseUser;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,12 +41,13 @@ import java.util.List;
 import java.util.Map;
 
 public class CodeActivity extends AppCompatActivity {
-    String id;
+    String id,questName;
     TextView tvResult;
     EditText etInput,header,answer;
     String answer_1,answer_2,publicTestCase,privateTestCase;
     String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-    Button btnSubmit,btnRun;
+    Button btnSubmit,btnRun,btnDiscuss;
+    String userName;
     question myQuestion = new question();
     // Access a Cloud Firestore instance from your Activity
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -100,6 +102,7 @@ public class CodeActivity extends AppCompatActivity {
                     Log.d("TAG","Current Data " + value.getData());
                     List listHeader,listAnswer_1,listAnswer_2,listTestCases;
 //                    String privateTestcaseOutput;
+                    questName = (String) value.getData().get("0_problemStatement");
                     listHeader = (List) value.getData().get("1_header");
                     listAnswer_1 = (List) value.getData().get("3_answer_1");
                     listAnswer_2 = (List) value.getData().get("5_answer_2");
@@ -135,6 +138,7 @@ public class CodeActivity extends AppCompatActivity {
         header = findViewById(R.id.header);
         answer = findViewById(R.id.answer);
         etInput   = findViewById(R.id.et_input);
+        btnDiscuss = findViewById(R.id.btnDiscuss);
         btnSubmit = findViewById(R.id.btn_submit);
         btnRun = findViewById(R.id.btn_run);
         answer_1 = "} \n int main() \n { \n";
@@ -146,6 +150,20 @@ public class CodeActivity extends AppCompatActivity {
         header.setText(questionHeader);
         etInput.setText("");
         answer.setText("");
+
+        btnDiscuss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Intent intent = new Intent(CodeActivity.this,DiscussionActivity.class);
+                System.out.println("question name: "+questName);
+                intent.putExtra("selected_quest", questName);
+                String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+                System.out.println("email: "+userEmail);
+                intent.putExtra("user_email", userEmail);
+                startActivity(intent);
+            }
+        });
+
         btnRun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

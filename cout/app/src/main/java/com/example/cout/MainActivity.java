@@ -44,11 +44,11 @@ public class MainActivity extends AppCompatActivity {
 
         E_mail = (EditText)findViewById(R.id.etEMail);
         Password = (EditText)findViewById(R.id.etPassword);
-        Info = (TextView)findViewById(R.id.tvInfo);
+        //Info = (TextView)findViewById(R.id.tvInfo);
         Login = (Button)findViewById(R.id.btnLogin);
         SignUp = (TextView)findViewById(R.id.tvRegister);
 
-        Info.setText("No of attempts left: 5");
+        //Info.setText("No of attempts left: 5");
 
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);

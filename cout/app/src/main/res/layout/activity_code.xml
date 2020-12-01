@@ -47,38 +47,6 @@
         app:layout_constraintTop_toBottomOf="@+id/et_input"
         app:layout_constraintVertical_bias="0.0"></EditText>
 
-    <Button
-        android:id="@+id/btn_submit"
-        android:layout_width="195dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        android:background="#1DC2B4"
-        android:text="Submit"
-        android:textAllCaps="false"
-        android:textColor="#FFF"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_run"
-        app:layout_constraintTop_toBottomOf="@+id/answer"
-        app:layout_constraintVertical_bias="0.256" />
-
-    <Button
-        android:id="@+id/btn_run"
-        android:layout_width="195dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        android:background="#1DC2B4"
-        android:text="Run"
-        android:textAllCaps="false"
-        android:textColor="#FFF"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toStartOf="@+id/btn_submit"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer"
-        app:layout_constraintVertical_bias="0.256" />
-
     <TextView
         android:id="@+id/tv_result"
         android:layout_width="0dp"
@@ -100,5 +68,40 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="556dp" />
+
+    <Button
+        android:id="@+id/btn_run"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Run"
+        app:layout_constraintBottom_toTopOf="@+id/tv_result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answer"
+        app:layout_constraintVertical_bias="0.501" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        app:layout_constraintBottom_toTopOf="@+id/tv_result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answer"
+        app:layout_constraintVertical_bias="0.501" />
+
+    <Button
+        android:id="@+id/btnDiscuss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Discussion"
+        app:layout_constraintBottom_toTopOf="@+id/tv_result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.912"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answer"
+        app:layout_constraintVertical_bias="0.501" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
