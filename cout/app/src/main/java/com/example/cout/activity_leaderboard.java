@@ -39,7 +39,7 @@ public class activity_leaderboard extends AppCompatActivity {
         getScore();
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        //progressBarInsideText = (TextView)findViewById(R.id.progressBarInsideText) ;
+//        progressBarInsideText = (TextView)findViewById(R.id.progressBarInsideText) ;
         userScoreList = (ListView) findViewById(R.id.userScoreList);
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,  android.R.layout.simple_expandable_list_item_1, list);
 

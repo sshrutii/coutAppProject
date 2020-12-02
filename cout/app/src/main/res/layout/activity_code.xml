@@ -7,106 +7,10 @@
     android:background="@color/colorPrimaryDark"
     tools:context=".CodeActivity">
 
-    <EditText
-        android:id="@+id/et_input"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:hint="Input code here"
-        android:textColor="#234564"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header"></EditText>
-
-    <EditText
-        android:id="@+id/header"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:background="#F4C4C4"
-        android:enabled="false"
-        android:overScrollMode="always"
-        android:scrollbarAlwaysDrawHorizontalTrack="false"
-        android:textColor="#234564"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></EditText>
-
-    <EditText
-        android:id="@+id/answer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="#F4C4C4"
-        android:enabled="false"
-        android:textColor="#234564"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_input"
-        app:layout_constraintVertical_bias="0.0"></EditText>
-
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="0dp"
-        android:layout_height="112dp"
-        android:background="#234564"
-        android:text="Compile Result"
-        android:textColor="#FFF"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer"
-        app:layout_constraintVertical_bias="0.938" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="556dp" />
-
-    <Button
-        android:id="@+id/btn_run"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Run"
-        app:layout_constraintBottom_toTopOf="@+id/tv_result"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer"
-        app:layout_constraintVertical_bias="0.501" />
-
-    <Button
-        android:id="@+id/btn_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        app:layout_constraintBottom_toTopOf="@+id/tv_result"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer"
-        app:layout_constraintVertical_bias="0.501" />
-
-    <Button
-        android:id="@+id/btnDiscuss"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Discussion"
-        app:layout_constraintBottom_toTopOf="@+id/tv_result"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.912"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer"
-        app:layout_constraintVertical_bias="0.501" />
-
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#304C68"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,7 +19,173 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/problemStatement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="#000000"
+                android:ems="10"
+                android:enabled="false"
+                android:inputType="textPersonName"
+                android:textColor="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="52dp"
+                android:background="#000000"
+                android:enabled="false"
+                android:overScrollMode="always"
+                android:scrollbarAlwaysDrawHorizontalTrack="false"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></EditText>
+
+            <EditText
+                android:id="@+id/et_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#06088c"
+                android:hint="Input code here"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/header"></EditText>
+
+            <EditText
+                android:id="@+id/answer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#000000"
+                android:enabled="false"
+                android:textColor="#FFFFFF"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_input"></EditText>
+
+            <TextView
+                android:id="@+id/tv_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#234564"
+                android:isScrollContainer="true"
+                android:textColor="#FFF"
+                android:textSize="16sp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/btn_run"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10px"
+                        android:layout_weight="1"
+                        android:background="#62B8F9"
+                        android:text="Run"
+                        app:layout_constraintBottom_toTopOf="@+id/tv_result"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.148"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/btn_submit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10px"
+                        android:layout_weight="1"
+                        android:background="#62B8F9"
+                        android:text="Submit"
+                        app:layout_constraintBottom_toTopOf="@+id/tv_result"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/btnDiscuss"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10px"
+                        android:layout_weight="1"
+                        android:background="#62B8F9"
+                        android:text="Discussion"
+                        app:layout_constraintBottom_toTopOf="@+id/tv_result"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.912"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableLayout>
+
+        </LinearLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!-- <EditText
+                android:id="@+id/et_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:hint="Input code here"
+                android:textColor="#234564"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/header"></EditText>
+
+            <EditText
+                android:id="@+id/header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="52dp"
+                android:background="#F4C4C4"
+                android:enabled="false"
+                android:overScrollMode="always"
+                android:scrollbarAlwaysDrawHorizontalTrack="false"
+                android:textColor="#234564"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></EditText>
+
+            <EditText
+                android:id="@+id/answer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="#F4C4C4"
+                android:enabled="false"
+                android:textColor="#234564"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_input"></EditText>-->

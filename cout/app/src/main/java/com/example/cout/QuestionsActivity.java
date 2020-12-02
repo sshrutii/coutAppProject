@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -61,6 +62,16 @@ public class QuestionsActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
+       final ProgressBar progressBar = (ProgressBar) findViewById(R.id.questionsProgressbar);
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                progressBar.setVisibility(View.GONE);
+                //progressBarInsideText.setVisibility(View.GONE);
+            }
+
+        }, 3000);
         myQuestionNames.clear();
         db.collection("questions").orderBy("timestamp", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override

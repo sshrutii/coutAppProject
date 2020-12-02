@@ -5,13 +5,13 @@ import android.util.Log;
 import java.util.List;
 
 public class question {
-    public String header,answer_1,answer_2,testCase,question,publicAnswer, privateAnswer,privateTestCaseOutput;
+    public String problemStatement,header,answer_1,answer_2,testCase,question,publicAnswer, privateAnswer,privateTestCaseOutput;
     question(){
         this.header = "";
         this.question="";
         this.answer_1="";
         this.testCase="";
-
+        this.problemStatement = "";
         this.answer_2="";
 
     }
@@ -20,8 +20,11 @@ public class question {
         this.question="";
         this.answer_1="";
         this.testCase="";
-
+        this.problemStatement = "";
         this.answer_2="";
+        this.publicAnswer = "";
+        this.privateAnswer = "";
+        this.privateTestCaseOutput = "";
     }
 
     void addHeader(List headerList){
