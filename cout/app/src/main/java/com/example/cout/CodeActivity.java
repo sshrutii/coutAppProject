@@ -42,7 +42,8 @@ import java.util.Map;
 public class CodeActivity extends AppCompatActivity {
     String id,questName;
     TextView tvResult;
-    EditText etInput,header,answer;
+
+    EditText etInput,header,answer,problemStatement;
     String answer_1,answer_2,publicTestCase,privateTestCase;
     String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
     Button btnSubmit,btnRun,btnDiscuss;
@@ -98,6 +99,7 @@ public class CodeActivity extends AppCompatActivity {
                     return;
                 }
                 if(value!=null && value.exists()){
+                    myQuestion.reset();
                     Log.d("TAG","Current Data " + value.getData());
                     List listHeader,listAnswer_1,listAnswer_2,listTestCases;
 //                    String privateTestcaseOutput;
@@ -106,11 +108,13 @@ public class CodeActivity extends AppCompatActivity {
                     listAnswer_1 = (List) value.getData().get("3_answer_1");
                     listAnswer_2 = (List) value.getData().get("5_answer_2");
                     listTestCases = (List) value.getData().get("4_testcases");
+
                     myQuestion.privateTestCaseOutput = (String) value.getData().get("6privateTestCaseOutput");
                     myQuestion.addHeader(listHeader);
                     myQuestion.addAnswer(listAnswer_1,listTestCases,listAnswer_2);
                     header.setText(myQuestion.header);
                     answer.setText(myQuestion.publicAnswer);
+                    problemStatement.setText("Q)  " + questName);
                 }
                 else{
                     Log.d("TAG","Curent Data: NULL");
@@ -140,6 +144,7 @@ public class CodeActivity extends AppCompatActivity {
         btnDiscuss = findViewById(R.id.btnDiscuss);
         btnSubmit = findViewById(R.id.btn_submit);
         btnRun = findViewById(R.id.btn_run);
+        problemStatement = findViewById(R.id.problemStatement);
         answer_1 = "} \n int main() \n { \n";
         answer_2 = "\n return 0; \n }  ";
         publicTestCase = "  cout<<\"The sum of two numbers (5,15) is\"<<add(5,15)<<endl;";
