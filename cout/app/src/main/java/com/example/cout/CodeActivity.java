@@ -257,7 +257,7 @@ public class CodeActivity extends AppCompatActivity {
                                                     if (incrementMarks)
                                                     {
 
-                                                        marks++;
+
                                                         counterques++;
 
                                                         marks+=10;
