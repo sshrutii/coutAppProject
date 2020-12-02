@@ -52,7 +52,7 @@ public class CodeActivity extends AppCompatActivity {
     // Access a Cloud Firestore instance from your Activity
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     final String TAG = "TAG";
-    int marks;
+    int marks,counterques;
     boolean incrementMarks = true;
     public void getMarksDataFromFirestore()
     {
@@ -80,6 +80,7 @@ public class CodeActivity extends AppCompatActivity {
                 }
                 if(value!=null && value.exists()){
                     marks =  Integer.parseInt(value.getData().get("Score").toString());
+                    counterques = Integer.parseInt(value.getData().get("questionsSolved").toString());
                     Log.d("tag",marks+"");
                 }
                 else{
@@ -256,10 +257,13 @@ public class CodeActivity extends AppCompatActivity {
                                                     if (incrementMarks)
                                                     {
                                                         marks++;
+                                                        counterques++;
                                                         Map<String, Object> data = new HashMap<>();
                                                         data.put("Score", marks);
+                                                        data.put("questionsSolved",counterques);
                                                         Map <String,Object> doc = new HashMap<>();
                                                         doc.put("Score",1);
+                                                        doc.put("questionsSolved",1);
                                                         db.collection("UsersInfo").document(currentuser).set(data, SetOptions.merge());
                                                         db.collection("UsersInfo").document(currentuser).collection("submitted").document(id).set(doc);
 

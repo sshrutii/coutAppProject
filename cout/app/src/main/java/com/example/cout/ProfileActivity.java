@@ -64,7 +64,7 @@ public class ProfileActivity extends AppCompatActivity {
                 if(value!=null && value.exists()){
                     nameLabel.setText("Name:  "+value.get("name"));
                     scoreLabel.setText("Score:  "+value.get("Score"));
-                    emailLabel.setText("email:  "+currentUser.getEmail());
+                    emailLabel.setText("Email:  "+currentUser.getEmail());
 
                 }
             }
