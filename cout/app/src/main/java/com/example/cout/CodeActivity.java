@@ -256,8 +256,12 @@ public class CodeActivity extends AppCompatActivity {
                                         public void run() {
                                                     if (incrementMarks)
                                                     {
+
                                                         marks++;
                                                         counterques++;
+
+                                                        marks+=10;
+
                                                         Map<String, Object> data = new HashMap<>();
                                                         data.put("Score", marks);
                                                         data.put("questionsSolved",counterques);
