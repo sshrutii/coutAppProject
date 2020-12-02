@@ -255,7 +255,7 @@ public class CodeActivity extends AppCompatActivity {
                                         public void run() {
                                                     if (incrementMarks)
                                                     {
-                                                        marks++;
+                                                        marks+=10;
                                                         Map<String, Object> data = new HashMap<>();
                                                         data.put("Score", marks);
                                                         Map <String,Object> doc = new HashMap<>();
