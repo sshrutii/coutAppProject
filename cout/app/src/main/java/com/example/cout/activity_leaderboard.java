@@ -39,7 +39,7 @@ public class activity_leaderboard extends AppCompatActivity {
         getScore();
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        //progressBarInsideText = (TextView)findViewById(R.id.progressBarInsideText) ;
+//        progressBarInsideText = (TextView)findViewById(R.id.progressBarInsideText) ;
         userScoreList = (ListView) findViewById(R.id.userScoreList);
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,  android.R.layout.simple_expandable_list_item_1, list);
 
@@ -49,24 +49,25 @@ public class activity_leaderboard extends AppCompatActivity {
             @Override
             public void run() {
                 progressBar.setVisibility(View.GONE);
+                userScoreList.setAdapter(arrayAdapter);
                 //progressBarInsideText.setVisibility(View.GONE);
             }
 
-        }, 3000);
+        }, 2000);
 
-       // userScoreList.setAdapter(arrayAdapter);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        // userScoreList.setAdapter(arrayAdapter);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
 
-                userScoreList.setAdapter(arrayAdapter);
+
                 ///add set Adapter here
 
             }
-        },1000);
+        //},1000);
 
 
-    }
+    //}
 
     public void getScore()
     {
@@ -96,9 +97,10 @@ public class activity_leaderboard extends AppCompatActivity {
                     Log.d("TAG", "Error getting document");
                 }
             }
-            });
+        });
 
 
 
     }
+
 }

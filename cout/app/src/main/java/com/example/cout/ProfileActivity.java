@@ -27,6 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private TextView nameLabel;
     private TextView scoreLabel;
+    private TextView emailLabel;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
@@ -35,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         nameLabel = (TextView)findViewById(R.id.name);
         scoreLabel = (TextView)findViewById(R.id.score);
+        emailLabel = (TextView)findViewById(R.id.email);
 
         setupUIViews();
 
@@ -53,34 +55,20 @@ public class ProfileActivity extends AppCompatActivity {
 
         Logout = (Button)findViewById(R.id.btnLogout);
         firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        final FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         System.out.println("email:  "+currentUser.getEmail()+" UID: "+currentUser.getUid());
         final DocumentReference docRef = db.collection("UsersInfo").document(currentUser.getUid());
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 if(value!=null && value.exists()){
-                    nameLabel.setText("Name: "+value.get("name"));
-                    scoreLabel.setText("Score: "+value.get("Score"));
+                    nameLabel.setText("Name:  "+value.get("name"));
+                    scoreLabel.setText("Score:  "+value.get("Score"));
+                    emailLabel.setText("email:  "+currentUser.getEmail());
 
                 }
             }
         });
-//        final FirebaseFirestore db= FirebaseFirestore.getInstance();
-//        nameLabel.setText("Fetching data");
-//        db.collection("UsersInfo").document(currentUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    DocumentSnapshot document = task.getResult();
-//                    if (document.exists()) {
-//                        nameLabel.setText("Name: "+document.get("name"));
-//                        scoreLabel.setText("Score: "+document.get("Score"));
-//                    }
-//                }
-//            }
-//        });
-
 
 
     }

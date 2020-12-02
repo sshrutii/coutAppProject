@@ -1,5 +1,8 @@
 package com.example.cout;
 
+import android.content.Context;
+import android.text.method.ScrollingMovementMethod;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,10 +17,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -150,6 +149,7 @@ public class CodeActivity extends AppCompatActivity {
         header.setText(questionHeader);
         etInput.setText("");
         answer.setText("");
+
 
         btnDiscuss.setOnClickListener(new View.OnClickListener() {
             @Override

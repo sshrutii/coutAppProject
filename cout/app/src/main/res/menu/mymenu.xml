@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/menuLogout"
-        android:icon="@drawable/logout"
+        android:icon="@drawable/ic_logout"
         android:orderInCategory="100"
         app:showAsAction="always"
         android:title="logout"
@@ -12,19 +12,11 @@
     </item>
     <item
         android:id="@+id/aa"
-        android:icon="@drawable/logout"
         android:orderInCategory="200"
         app:showAsAction="never"
-        android:title="aa"
+        android:title="update profile"
         >
     </item>
-    <item
-        android:id="@+id/bb"
-        android:icon="@drawable/logout"
-        android:orderInCategory="300"
-        app:showAsAction="never"
-        android:title="bb"
-        >
-    </item>
+
 
 </menu>

@@ -63,7 +63,13 @@ public class MainActivity extends AppCompatActivity {
 
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {                                            //on clicking login button
+            public void onClick(View v) {
+                //on clicking login button
+                if(!checkifempty())
+                {
+                    Toast.makeText(MainActivity.this,"Login Failed!",Toast.LENGTH_SHORT).show();
+                }
+                else
                 validate(E_mail.getText().toString(),Password.getText().toString());
             }
         });
@@ -79,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void validate(String usermail,String userpassword)   //validate fn defination  //if correct login creds,only then allow to default page
     {
+
         progressDialog.setMessage("Just a moment,Setting you up!");
         progressDialog.show();
 
@@ -86,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth.signInWithEmailAndPassword(usermail,userpassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful() && (checkifempty()==true) )  //if authentication successful,added to the database and redirected to default page(2)
+                if(task.isSuccessful()  )  //if authentication successful,added to the database and redirected to default page(2)
                 {
                     progressDialog.dismiss();
                     checkEmailVerification();
@@ -94,12 +101,12 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     progressDialog.dismiss();
                     Toast.makeText(MainActivity.this,"Login Failed!",Toast.LENGTH_SHORT).show();
-                    counter--;
-                    Info.setText("No of attempts left:" + String.valueOf(counter));
-                    if(counter==0)
-                    {
-                        Login.setEnabled(false);
-                    }
+//                    counter--;
+//                    Info.setText("No of attempts left:" + String.valueOf(counter));
+//                    if(counter==0)
+//                    {
+//                        Login.setEnabled(false);
+//                    }
                 }
 
             }

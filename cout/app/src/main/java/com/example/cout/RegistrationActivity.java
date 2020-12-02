@@ -25,6 +25,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button regButton;
     private TextView userLogin;
 
+
     private FirebaseAuth firebaseAuth;   //create an instance of  class FirebaseAuth to import all its libraries and features
 
     @Override

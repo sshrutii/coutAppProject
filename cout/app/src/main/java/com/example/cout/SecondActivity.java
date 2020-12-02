@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class SecondActivity extends AppCompatActivity {
-    private ImageView prof,score ;
+    private ImageView prof,score,website ;
     private Button code;
 
     @Override
@@ -38,14 +38,21 @@ public class SecondActivity extends AppCompatActivity {
                 startActivity(new Intent(SecondActivity.this, activity_leaderboard.class));
             }
         });
+        website.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SecondActivity.this, WebsiteActivity.class));
+            }
+        });
 
 
     }
 
     private void setupUIViews(){                                // setting the values from ui to these variables
 
-        prof = (ImageView) findViewById(R.id.btnprof);
+        prof = (ImageView) findViewById(R.id.btnProf);
         score  = (ImageView) findViewById(R.id.btnLeaderboard);
         code = (Button)findViewById(R.id.btncode);
+        website = (ImageView)findViewById(R.id.btnWeb);
     }
 }
