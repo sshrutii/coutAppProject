@@ -15,6 +15,14 @@ public class question {
         this.answer_2="";
 
     }
+    void reset(){
+        this.header = "";
+        this.question="";
+        this.answer_1="";
+        this.testCase="";
+
+        this.answer_2="";
+    }
 
     void addHeader(List headerList){
         for (int i=0;i<headerList.size()-1;i++)

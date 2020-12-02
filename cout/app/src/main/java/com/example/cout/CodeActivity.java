@@ -99,6 +99,7 @@ public class CodeActivity extends AppCompatActivity {
                     return;
                 }
                 if(value!=null && value.exists()){
+                    myQuestion.reset();
                     Log.d("TAG","Current Data " + value.getData());
                     List listHeader,listAnswer_1,listAnswer_2,listTestCases;
 //                    String privateTestcaseOutput;
