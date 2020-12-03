@@ -29,7 +29,7 @@
                 android:background="#000000"
                 android:ems="10"
                 android:enabled="false"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
                 android:textColor="#FFFFFF" />
 
             <EditText
@@ -39,6 +39,7 @@
                 android:layout_marginTop="52dp"
                 android:background="#000000"
                 android:enabled="false"
+                android:inputType="textMultiLine"
                 android:overScrollMode="always"
                 android:scrollbarAlwaysDrawHorizontalTrack="false"
                 android:textColor="#ffffff"
@@ -54,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:background="#06088c"
                 android:hint="Input code here"
+                android:inputType="textMultiLine"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -66,8 +68,9 @@
                 android:layout_height="wrap_content"
                 android:background="#000000"
                 android:enabled="false"
-                android:textColor="#FFFFFF"
+                android:inputType="textMultiLine"
 
+                android:textColor="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
