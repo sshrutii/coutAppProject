@@ -29,7 +29,7 @@ public class SecondActivity extends AppCompatActivity {
         code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SecondActivity.this, QuestionsActivity.class));
+                startActivity(new Intent(SecondActivity.this, Topics.class));
             }
         });
         score.setOnClickListener(new View.OnClickListener() {

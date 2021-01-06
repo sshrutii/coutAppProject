@@ -56,13 +56,14 @@ public class QuestionsActivity extends AppCompatActivity {
 
 
     }
+    String id1,lang;
     ArrayList<String> idArrayList = new ArrayList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
-       final ProgressBar progressBar = (ProgressBar) findViewById(R.id.questionsProgressbar);
+        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.questionsProgressbar);
         new Handler().postDelayed(new Runnable() {
 
             @Override
@@ -73,7 +74,11 @@ public class QuestionsActivity extends AppCompatActivity {
 
         }, 3000);
         myQuestionNames.clear();
-        db.collection("questions").orderBy("timestamp", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        Intent i  = getIntent();
+        id1 = i.getStringExtra("id");
+        lang = i.getStringExtra("lang");
+        Log.d("id",id1);
+        db.collection("topics").document(id1).collection("questions").orderBy("timestamp", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
@@ -114,8 +119,10 @@ public class QuestionsActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(QuestionsActivity.this,CodeActivity.class);
-                       Log.d("idQ",idArrayList.get(position)+"");
-                        intent.putExtra("id",myQuestionNames.get(position).id);
+                        Log.d("idQ",idArrayList.get(position)+"");
+                        intent.putExtra("id1",id1);
+                        intent.putExtra("id2",myQuestionNames.get(position).id);
+                        intent.putExtra("language",lang);
                         startActivity(intent);
 
                     }

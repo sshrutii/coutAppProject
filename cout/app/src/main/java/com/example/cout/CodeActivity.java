@@ -40,7 +40,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CodeActivity extends AppCompatActivity {
-    String id,questName;
+    String id1,id2,questName,language;
     TextView tvResult;
 
     EditText etInput,header,answer,problemStatement;
@@ -57,7 +57,7 @@ public class CodeActivity extends AppCompatActivity {
     public void getMarksDataFromFirestore()
     {
         final DocumentReference docRef =db.collection("UsersInfo").document(currentuser);
-        docRef.collection("submitted").document(id).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+        docRef.collection("submitted").document(id2).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (value !=null && value.exists())
@@ -91,7 +91,7 @@ public class CodeActivity extends AppCompatActivity {
     }
     public void getCodeDataFromFirestore(){
         myQuestion = new question();
-        final DocumentReference docRef = db.collection("questions").document(id);
+        final DocumentReference docRef = db.collection("topics").document(id1).collection("questions").document(id2);
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -123,7 +123,7 @@ public class CodeActivity extends AppCompatActivity {
             }
         });
 
-     }
+    }
 
 
     @Override
@@ -134,8 +134,10 @@ public class CodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_code);
 
         Intent i  = getIntent();
-        id = i.getStringExtra("id");
-        Log.d("id",id);
+        id1   = i.getStringExtra("id1");
+        id2   = i.getStringExtra("id2");
+        language = i.getStringExtra("language");
+        Log.d("id",id1);
 
         getCodeDataFromFirestore();
         tvResult  = findViewById(R.id.tv_result);
@@ -174,7 +176,7 @@ public class CodeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                ApiService apiService = ApiHandler.getRetrofitInstance();
+                ApiService apiService = ApiHandler.getRetrofitInstance(language);
                 Call<String> execute = apiService.execute(new PostData(header.getText().toString() + etInput.getText().toString() + myQuestion.publicAnswer));
 
                 tvResult.setText("Loading...");
@@ -223,7 +225,7 @@ public class CodeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                ApiService apiService = ApiHandler.getRetrofitInstance();
+                ApiService apiService = ApiHandler.getRetrofitInstance(language);
                 Call<String> execute = apiService.execute(new PostData(header.getText().toString() + etInput.getText().toString() + myQuestion.privateAnswer));
 
                 tvResult.setText("Loading...");
@@ -254,25 +256,25 @@ public class CodeActivity extends AppCompatActivity {
                                     new Handler().postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
-                                                    if (incrementMarks)
-                                                    {
+                                            if (incrementMarks)
+                                            {
 
 
-                                                        counterques++;
+                                                counterques++;
 
-                                                        marks+=10;
+                                                marks+=10;
 
-                                                        Map<String, Object> data = new HashMap<>();
-                                                        data.put("Score", marks);
-                                                        data.put("questionsSolved",counterques);
-                                                        Map <String,Object> doc = new HashMap<>();
-                                                        doc.put("Score",1);
-                                                        doc.put("questionsSolved",1);
-                                                        db.collection("UsersInfo").document(currentuser).set(data, SetOptions.merge());
-                                                        db.collection("UsersInfo").document(currentuser).collection("submitted").document(id).set(doc);
+                                                Map<String, Object> data = new HashMap<>();
+                                                data.put("Score", marks);
+                                                data.put("questionsSolved",counterques);
+                                                Map <String,Object> doc = new HashMap<>();
+                                                doc.put("Score",1);
+                                                doc.put("questionsSolved",1);
+                                                db.collection("UsersInfo").document(currentuser).set(data, SetOptions.merge());
+                                                db.collection("UsersInfo").document(currentuser).collection("submitted").document(id2).set(doc);
 
-                                                    }
-                                               }
+                                            }
+                                        }
                                     },3000);
 
                                 }
