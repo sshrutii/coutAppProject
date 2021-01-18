@@ -1,0 +1,233 @@
+﻿[
+        {
+            "Index": "1",
+            "Language": "Java",
+            "LanguageCode": "java",
+            "compilers" : [
+                {
+                    "Version": "JDK 1.8.0_66",
+                    "VersionIndex": "0"
+                },
+                {
+                    "Version": "JDK 9.0.1",
+                    "VersionIndex": "1"
+                },
+                {
+                    "Version": "JDK 10.0.1",
+                    "VersionIndex": "2"
+                },
+                {
+                     "Version": "JDK 11.0.4",
+                    "VersionIndex": "3"
+                }
+            ]
+            
+        },
+        {
+            "Index": "2",
+            "Language": "C",
+            "LanguageCode": "c",
+            "compilers":[
+                {
+                    "Version": "GCC 5.3.0",
+                    "VersionIndex": "0"
+                },
+                {
+                    "Version": "Zapcc 5.0.0",
+                    "VersionIndex": "1"
+                },
+                {
+                    "Version": "GCC 7.2.0",
+                    "VersionIndex": "2"
+                },
+                {
+                    "Version": "GCC 8.1.0",
+                    "VersionIndex": "3"
+                },
+                {
+                    "Version": "GCC 9.1.0",
+                    "VersionIndex": "4"
+                }
+            ]
+            
+        },
+        
+        {
+            "Index": "3",
+            "Language": "C-99",
+            "LanguageCode": "c99",
+            "compilers":[
+                {
+                    "Version": "GCC 5.3.0",
+                    "VersionIndex": "0"
+                },
+                { 
+                    "Version": "GCC 7.2.0",
+                    "VersionIndex": "1"
+                },
+                {
+                    "Version": "GCC 8.1.0",
+                    "VersionIndex": "2"
+                },
+                {
+                    "Version": "GCC 9.1.0",
+                    "VersionIndex": "3"
+                }
+            ]
+           
+        },
+       
+        {
+            "Index": "4",
+            "Language": "c++",
+            "LanguageCode": "cpp",
+            "compilers":[
+                {
+                    "Version": "GCC 5.3.0",
+                    "VersionIndex": "0"
+                },
+                {
+                    "Version": "Zapcc 5.0.0",
+                    "VersionIndex": "1"
+                },
+                {
+                    "Version": "GCC 7.2.0",
+                    "VersionIndex": "2"
+                },
+                {
+                    "Version": "GCC 8.1.0",
+                    "VersionIndex": "3"
+                },
+                {
+                    "Version": "GCC 9.1.0",
+                    "VersionIndex": "4"
+                }
+            ]
+        },
+        {
+            "Index": "5",
+            "Language": "C++ 14",
+            "LanguageCode": "cpp14",
+            "compilers":[
+                {
+                    "Version": "g++ 14 GCC 5.3.0",
+                    "VersionIndex": "0"
+                },
+                {
+                    "Version": "g++ 14 GCC 7.2.0",
+                    "VersionIndex": "1"        
+                },
+                {
+                    "Version": "g++ 14 GCC 8.1.0",
+                    "VersionIndex": "2"
+                },
+                {
+                    "Version": "g++ 14 GCC 9.1.0",
+                    "VersionIndex": "3"
+                }
+            ]
+        },
+        
+        {
+            "Index": "6",
+            "Language": "C++ 17",
+            "LanguageCode": "cpp17",
+            "compilers":[{
+                "Version": "g++ 17 GCC 9.10",
+                "VersionIndex": "0"
+            }]
+        },
+        {
+            "Index": "7",
+            "Language": "PHP",
+            "LanguageCode": "php",
+            "compilers":[
+                {
+                    "Version": "5.6.16",
+                    "VersionIndex": "0"
+                },
+                {
+                    "Version": "7.1.11",
+                    "VersionIndex": "1" 
+                },
+                {
+                    "Version": "7.2.5",
+                    "VersionIndex": "2"
+                },
+                {
+                    "Version": "7.3.10",
+                    "VersionIndex": "3"
+                }
+            ]
+        },
+        
+        {
+            "Index": "8",
+            "Language": "Python 2",
+            "LanguageCode": "python2",
+            "compilers":[
+                {
+                    "Version": "2.7.11",
+                    "VersionIndex": "0"
+                },
+                {
+                    "Version": "2.7.15",
+                    "VersionIndex": "1"
+                },
+                {
+                    "Version": "2.7.16",
+                    "VersionIndex": "2"
+                }
+
+            ]
+        },
+        {
+            "Index": "9",
+            "Language": "Python 3",
+            "LanguageCode": "python3",
+            "compilers":[
+                {
+                    "Version": "3.5.1",
+                    "VersionIndex": "0"
+                },
+                {
+                    "Version": "3.6.3",
+                    "VersionIndex": "1"
+                },
+                {
+                    "Version": "3.6.5",
+                    "VersionIndex": "2"
+                },
+                {
+                    "Version": "3.7.4",
+                    "VersionIndex": "3"
+                }
+
+            ]
+        },
+       
+        {
+            "Index": "10",
+            "Language": "Ruby",
+            "LanguageCode": "ruby",
+            "compilers":[
+                {
+                    "Version": "2.2.4",
+                    "VersionIndex": "0"
+                },
+                {
+                    "Version": "2.4.2p198",
+                    "VersionIndex": "1"
+                },
+                {
+                    "Version": "2.5.1p57",
+                    "VersionIndex": "2"
+                },
+                {
+                    "Version": "2.6.5",
+                    "VersionIndex": "3"
+                }
+            ]
+            
+        }
+    ]

@@ -1,0 +1,51 @@
+.questionBlock {
+  text-align: center;
+  display: grid;
+  place-items: center;
+}
+
+.block {
+    display: flex;
+    align-items: center;
+   
+    margin: 5px;
+  }
+  .block > label {
+    display: grid;
+     width: 15vw;
+     height: 200px;
+     margin-right: 10px;
+    resize: none;
+    color: white;
+    background-color: black;
+    border: 1px solid white ;
+    place-items: center;
+    
+  }
+  
+  .block > textarea {
+   
+    width: 70vw;
+    height: 200px;
+    resize: none;
+    color: white;
+    background-color: black;
+    margin-right: 20px;
+  }
+  .Button {
+    color:  rgb(75, 75, 172);
+    background-color: black;
+    width: 200px;
+    margin: 30px;
+    font-size: x-large;
+    font-weight: 900;
+    cursor: pointer;
+  }
+  
+  @media(max-width:550px){
+    .block > label {
+      font-size: x-small;
+      /* color: red; */
+    }
+
+  }
