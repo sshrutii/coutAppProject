@@ -101,12 +101,6 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     progressDialog.dismiss();
                     Toast.makeText(MainActivity.this,"Login Failed!",Toast.LENGTH_SHORT).show();
-//                    counter--;
-//                    Info.setText("No of attempts left:" + String.valueOf(counter));
-//                    if(counter==0)
-//                    {
-//                        Login.setEnabled(false);
-//                    }
                 }
 
             }
