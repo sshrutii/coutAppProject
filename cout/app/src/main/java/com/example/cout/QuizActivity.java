@@ -10,61 +10,44 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-class questionName {
+class quizQuestionName {
     String id,name;
-    questionName(String id){
+    quizQuestionName(String id){
         id = "";
         name = "NULL";
     }
     void setId(String id,int num){
         this.id = id;
-        this.name = "Question" + num;
+        this.name = "MCQ" + num;
     }
 }
 
-public class QuestionsActivity extends AppCompatActivity {
-
-
+public class QuizActivity extends AppCompatActivity {
     // Access a Cloud Firestore instance from your Activity
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ArrayList <questionName> myQuestionNames = new ArrayList<questionName>();
+    ArrayList<quizQuestionName> myquizQuestionNames = new ArrayList<quizQuestionName>();
 
-//    List<String> idList;
-
-    void getDocumentIds() {
-
-
-
-
-    }
     String id1,lang;
-    ArrayList<String> idArrayList = new ArrayList();
+    ArrayList<String> quizidArrayList = new ArrayList();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_questions);
+        setContentView(R.layout.activity_quiz);
 
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.questionsProgressbar);
+        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.quizprogressBar);
         new Handler().postDelayed(new Runnable() {
 
             @Override
@@ -74,12 +57,12 @@ public class QuestionsActivity extends AppCompatActivity {
             }
 
         }, 3000);
-        myQuestionNames.clear();
+        myquizQuestionNames.clear();
         Intent i  = getIntent();
         id1 = i.getStringExtra("id");
         lang = i.getStringExtra("lang");
         Log.d("id",id1);
-        db.collection("topics").document(id1).collection("questions").orderBy("timestamp", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("topics").document(id1).collection("quizQuestions").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
@@ -87,15 +70,15 @@ public class QuestionsActivity extends AppCompatActivity {
                     for (QueryDocumentSnapshot document: task.getResult()){
                         Log.d("tag",document.getId());
                         String id = ""+ document.getId()+"";
-                        questionName temp = new questionName(id);
+                        quizQuestionName temp = new quizQuestionName(id);
                         temp.setId(id + "",count++);
-                        myQuestionNames.add(temp);
+                        myquizQuestionNames.add(temp);
                     }
-                    Log.d("tag",myQuestionNames.get(0).name);
-                    int n = myQuestionNames.size();
+                    Log.d("tag",myquizQuestionNames.get(0).name);
+                    int n = myquizQuestionNames.size();
                     Log.d("tag",n+"");
                     for (int i=0;i<n;i++){
-                        idArrayList.add(myQuestionNames.get(i).name + "");
+                        quizidArrayList.add(myquizQuestionNames.get(i).name + "");
                     }
                 }
                 else {
@@ -106,9 +89,9 @@ public class QuestionsActivity extends AppCompatActivity {
 
 
 
-        final ArrayAdapter <String> questionsArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,idArrayList);
+        final ArrayAdapter<String> questionsArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,quizidArrayList);
 
-        final ListView questionsListView = (ListView) findViewById(R.id.questionsListView);
+        final ListView questionsListView = (ListView) findViewById(R.id.quizQues);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -119,11 +102,13 @@ public class QuestionsActivity extends AppCompatActivity {
                 questionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent intent = new Intent(QuestionsActivity.this,CodeActivity.class);
-                        Log.d("idQ",idArrayList.get(position)+"");
+                        Intent intent = new Intent(QuizActivity.this,QuizQuestionActivity.class);
+                        Log.d("idQ",quizidArrayList.get(position)+"");
                         intent.putExtra("id1",id1);
-                        intent.putExtra("id2",myQuestionNames.get(position).id);
+                        intent.putExtra("id2","mcqid"+position);
                         intent.putExtra("language",lang);
+                        intent.putExtra("k1",position);
+                        //intent.putExtra("size1",quizidArrayList.size());
                         startActivity(intent);
 
                     }
@@ -131,35 +116,5 @@ public class QuestionsActivity extends AppCompatActivity {
             }
         },3000);
 
-
-
     }
 }
-
-
-/*
-Firestore dummy data ror reference
-
-// Create a new user with a first and last name
-        Map<String, Object> user = new HashMap<>();
-        user.put("first", "Ada");
-        user.put("last", "Lovelace");
-        user.put("born", 1815);
-
-// Add a new document with a generated ID
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("", "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("", "Error adding document", e);
-                    }
-                });
-
- */

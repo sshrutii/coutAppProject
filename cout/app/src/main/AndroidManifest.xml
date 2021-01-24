@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Topics"></activity>
+        <activity android:name=".QuizQuestionActivity"></activity>
+        <activity android:name=".QuizActivity" />
+        <activity android:name=".Topics" />
         <activity android:name=".WebsiteActivity" />
         <activity android:name=".DiscussionActivity" />
         <activity
