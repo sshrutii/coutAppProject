@@ -52,8 +52,10 @@ public class Topics extends AppCompatActivity {
         setContentView(R.layout.activity_topics);
 
         int flag;
-        Intent i  = getIntent();
-        flag = i.getIntExtra("flag",1);
+
+        Intent i = getIntent();
+        flag = i.getIntExtra("flag", 1);
+        System.out.println("flag: " + flag);
 
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.topicsProgressbar);
         new Handler().postDelayed(new Runnable() {
@@ -66,56 +68,89 @@ public class Topics extends AppCompatActivity {
 
         }, 3000);
 
-        if(flag==1){
+
+        if (flag == 1) {
             myTopicNames.clear();
             db.collection("topics").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if(task.isSuccessful()){
+//<<<<<<< HEAD
+//                    if(task.isSuccessful()){
+//                        int count = 1;
+//                        for (QueryDocumentSnapshot document: task.getResult()){
+//                            Log.d("tag",document.getId());
+//                            String id = ""+ document.getId()+"";
+//                            String name = "" + document.getData().get("name");
+//                            topicName temp = new topicName(id,name);
+//                            temp.setId(id + "",name);
+//                            myTopicNames.add(temp);
+//                        }
+////                    Log.d("tag", myTopicNames.get(0).name);
+//                        int n = myTopicNames.size();
+////                    Log.d("tag",n+"");
+//                        for (int i=0;i<n;i++){
+//                            idArrayList.add(myTopicNames.get(i).name + "");
+//                        }
+//                    }
+//                    else {
+//=======
+                    if (task.isSuccessful()) {
                         int count = 1;
-                        for (QueryDocumentSnapshot document: task.getResult()){
-                            Log.d("tag",document.getId());
-                            String id = ""+ document.getId()+"";
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.d("tag", document.getId());
+                            String id = "" + document.getId() + "";
                             String name = "" + document.getData().get("name");
-                            topicName temp = new topicName(id,name);
-                            temp.setId(id + "",name);
+                            topicName temp = new topicName(id, name);
+                            temp.setId(id + "", name);
                             myTopicNames.add(temp);
                         }
+                        System.out.println("flag is 1");
 //                    Log.d("tag", myTopicNames.get(0).name);
                         int n = myTopicNames.size();
 //                    Log.d("tag",n+"");
-                        for (int i=0;i<n;i++){
+                        for (int i = 0; i < n; i++) {
                             idArrayList.add(myTopicNames.get(i).name + "");
                         }
-                    }
-                    else {
+                    } else {
+//>>>>>>> c7f173205a53df72f80963ddd9818e8caf4d20cd
                         Log.d("TAG", "Error getting documents: ", task.getException());
                     }
                 }
             });
 
 
-
-            final ArrayAdapter<String> questionsArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,idArrayList);
-
+            final ArrayAdapter<String> questionsArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, idArrayList);
             final ListView topicsListView = (ListView) findViewById(R.id.topicsListView);
-
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-
+//            final ListView topicsListView = (ListView) findViewById(R.id.topicsListView);
 
                     topicsListView.setAdapter(questionsArrayAdapter);
                     topicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Intent intent = new Intent(Topics.this,QuestionsActivity.class);
-                            Log.d("idQ",idArrayList.get(position)+"");
+                            Intent intent = new Intent(Topics.this, QuestionsActivity.class);
+                            Log.d("idQ", idArrayList.get(position) + "");
                             intent.putExtra("id", myTopicNames.get(position).id);
                             intent.putExtra("lang", myTopicNames.get(position).name);
-                            Toast.makeText(Topics.this,myTopicNames.get(position).id,Toast.LENGTH_SHORT).show();
-                            Toast.makeText(Topics.this,myTopicNames.get(position).name,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Topics.this, myTopicNames.get(position).id, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Topics.this, myTopicNames.get(position).name, Toast.LENGTH_SHORT).show();
                             startActivity(intent);
+
+
+//<<<<<<< HEAD
+//                    topicsListView.setAdapter(questionsArrayAdapter);
+//                    topicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                        @Override
+//                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                            Intent intent = new Intent(Topics.this,QuestionsActivity.class);
+//                            Log.d("idQ",idArrayList.get(position)+"");
+//                            intent.putExtra("id", myTopicNames.get(position).id);
+//                            intent.putExtra("lang", myTopicNames.get(position).name);
+//                            Toast.makeText(Topics.this,myTopicNames.get(position).id,Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(Topics.this,myTopicNames.get(position).name,Toast.LENGTH_SHORT).show();
+//                            startActivity(intent);
 
                         }
                     });
@@ -123,6 +158,64 @@ public class Topics extends AppCompatActivity {
             },3000);
 
         }
+
+//        else if(flag==2){
+//=======
+//                        }
+//                    });
+//                }
+//            }, 3000);
+
+        //}
+//        else if (flag == 2) {
+////>>>>>>> c7f173205a53df72f80963ddd9818e8caf4d20cd
+//            myTopicNames.clear();
+//            db.collection("topics").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+////<<<<<<< HEAD
+//                    if(task.isSuccessful()){
+//                        int count = 1;
+//                        for (QueryDocumentSnapshot document: task.getResult()){
+//                            Log.d("tag",document.getId());
+//                            String id = ""+ document.getId()+"";
+//                            String name = "" + document.getData().get("name");
+//                            topicName temp = new topicName(id,name);
+//                            temp.setId(id + "",name);
+//                            myTopicNames.add(temp);
+//                        }
+////                    Log.d("tag", myTopicNames.get(0).name);
+//                        int n = myTopicNames.size();
+////                    Log.d("tag",n+"");
+//                        for (int i=0;i<n;i++){
+//                            idArrayList.add(myTopicNames.get(i).name + "");
+//                        }
+//                    }
+//                    else {
+//=======
+//                    if (task.isSuccessful()) {
+//                        int count = 1;
+//                        for (QueryDocumentSnapshot document : task.getResult()) {
+//                            Log.d("tag", document.getId());
+//                            String id = "" + document.getId() + "";
+//                            String name = "" + document.getData().get("name");
+//                            topicName temp = new topicName(id, name);
+//                            temp.setId(id + "", name);
+//                            myTopicNames.add(temp);
+//                        }
+//                        //                    Log.d("tag", myTopicNames.get(0).name);
+//                        int n = myTopicNames.size();
+//                        //                    Log.d("tag",n+"");
+//                        for (int i = 0; i < n; i++) {
+//                            idArrayList.add(myTopicNames.get(i).name + "");
+//                        }
+//                    } else {
+//                        Log.d("TAG", "Error getting documents: ", task.getException());
+//                    }
+//                }
+//            });
+        //}
+        //
 
         else if(flag==2){
             myTopicNames.clear();
@@ -181,5 +274,91 @@ public class Topics extends AppCompatActivity {
         }
 
 
+        else if (flag == 3) {
+            myTopicNames.clear();
+            db.collection("topics").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        int count = 1;
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.d("tag", document.getId());
+                            String id = "" + document.getId() + "";
+                            String name = "" + document.getData().get("name");
+                            topicName temp = new topicName(id, name);
+                            temp.setId(id + "", name);
+                            myTopicNames.add(temp);
+                        }
+//                    Log.d("tag", myTopicNames.get(0).name);
+                        int n = myTopicNames.size();
+//                    Log.d("tag",n+"");
+                        for (int i = 0; i < n; i++) {
+                            idArrayList.add(myTopicNames.get(i).name + "");
+                        }
+                    } else {
+//>>>>>>> c7f173205a53df72f80963ddd9818e8caf4d20cd
+                        Log.d("TAG", "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+
+
+//<<<<<<< HEAD
+
+            final ArrayAdapter<String> questionsArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,idArrayList);
+
+            final ListView topicsListView = (ListView) findViewById(R.id.topicsListView);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+
+                    topicsListView.setAdapter(questionsArrayAdapter);
+                    topicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent intent = new Intent(Topics.this,QuizActivity.class);
+                            Log.d("idQ",idArrayList.get(position)+"");
+                            intent.putExtra("id", myTopicNames.get(position).id);
+                            intent.putExtra("lang", myTopicNames.get(position).name);
+                            startActivity(intent);
+
+                        }
+                    });
+                }
+            },3000);
+
+        }
+//=======
+//            final ArrayAdapter<String> questionsArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, idArrayList);
+//
+//            final ListView topicsListView = (ListView) findViewById(R.id.topicsListView);
+//>>>>>>> c7f173205a53df72f80963ddd9818e8caf4d20cd
+//
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//
+//
+//                    topicsListView.setAdapter(questionsArrayAdapter);
+//                    topicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                        @Override
+//                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                            Intent intent = new Intent(Topics.this, AdminActivity.class);
+//                            Log.d("idQ", idArrayList.get(position) + "");
+//                            intent.putExtra("id", myTopicNames.get(position).id);
+//                            intent.putExtra("lang", myTopicNames.get(position).name);
+//                            startActivity(intent);
+//
+//                        }
+//                    });
+//                }
+//            }, 3000);
+//
+//        }
+
     }
+
+
 }

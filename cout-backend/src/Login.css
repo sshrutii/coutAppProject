@@ -1,0 +1,35 @@
+.login {
+    background-color: rgb(8, 8, 77);
+    height: 87vh;
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.loginContainer {
+    padding: 50px;
+    text-align: center;
+    background-color: black;
+    border-radius: 10px;
+    box-shadow: -1px 4px 20px -6px rgba(0,0,0,0.75);
+}
+
+.loginContainer  > .loginButton >.button {
+
+    width: 50px !important;
+    margin-top: 50px;
+    
+    background-color: #0277BD;
+    color: black;
+    cursor: pointer;
+}
+
+.loginText{
+    color: #0277BD;
+}
+.loginContainer > .loginLogo {
+    align-self: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}

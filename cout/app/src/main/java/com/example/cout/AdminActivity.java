@@ -1,69 +1,42 @@
 package com.example.cout;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
-
+import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import android.view.View;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-class questionName {
-    String id,name;
-    questionName(String id){
-        id = "";
-        name = "NULL";
-    }
-    void setId(String id,int num){
-        this.id = id;
-        this.name = "Question" + num;
-    }
-}
-
-public class QuestionsActivity extends AppCompatActivity {
-
+public class AdminActivity extends AppCompatActivity {
 
     // Access a Cloud Firestore instance from your Activity
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList <questionName> myQuestionNames = new ArrayList<questionName>();
 
-//    List<String> idList;
-
-    void getDocumentIds() {
-
-
-
-
-    }
-    String id1,lang;
+    String id1, lang;
     ArrayList<String> idArrayList = new ArrayList();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
-
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.questionsProgressbar);
         new Handler().postDelayed(new Runnable() {
 
@@ -74,21 +47,23 @@ public class QuestionsActivity extends AppCompatActivity {
             }
 
         }, 3000);
+
         myQuestionNames.clear();
-        Intent i  = getIntent();
+        Intent i = getIntent();
         id1 = i.getStringExtra("id");
         lang = i.getStringExtra("lang");
-        Log.d("id",id1);
+        Log.d("id", id1);
         db.collection("topics").document(id1).collection("questions").orderBy("timestamp", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     int count = 1;
-                    for (QueryDocumentSnapshot document: task.getResult()){
-                        Log.d("tag",document.getId());
-                        String id = ""+ document.getId()+"";
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Log.d("tag", document.getId());
+                        String id = "" + document.getId() + "";
+                        System.out.println("isApproved:"+document.get("isApproved"));
                         boolean status = (boolean) document.get("isApproved");
-                        if(status) {
+                        if(!status) {
                             questionName temp = new questionName(id);
                             temp.setId(id + "", count++);
                             myQuestionNames.add(temp);
@@ -102,16 +77,14 @@ public class QuestionsActivity extends AppCompatActivity {
                             idArrayList.add(myQuestionNames.get(i).name + "");
                         }
                     }
-                }
-                else {
+                } else {
                     Log.d("TAG", "Error getting documents: ", task.getException());
                 }
             }
         });
 
 
-
-        final ArrayAdapter <String> questionsArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,idArrayList);
+        final ArrayAdapter<String> questionsArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, idArrayList);
 
         final ListView questionsListView = (ListView) findViewById(R.id.questionsListView);
 
@@ -119,13 +92,14 @@ public class QuestionsActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                if(myQuestionNames.size()>0) {
+                if(myQuestionNames.size()>=1) {
                     questionsListView.setAdapter(questionsArrayAdapter);
                     questionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Intent intent = new Intent(QuestionsActivity.this, CodeActivity.class);
+                            Intent intent = new Intent(AdminActivity.this, CodeActivity.class);
                             Log.d("idQ", idArrayList.get(position) + "");
+                            intent.putExtra("flag",1);
                             intent.putExtra("id1", id1);
                             intent.putExtra("id2", myQuestionNames.get(position).id);
                             intent.putExtra("language", lang);
@@ -134,38 +108,13 @@ public class QuestionsActivity extends AppCompatActivity {
                         }
                     });
                 }
+                else{
+                    System.out.println("no data in array");
+                }
             }
-        },3000);
-
+        }, 3000);
 
 
     }
+
 }
-
-
-/*
-Firestore dummy data ror reference
-
-// Create a new user with a first and last name
-        Map<String, Object> user = new HashMap<>();
-        user.put("first", "Ada");
-        user.put("last", "Lovelace");
-        user.put("born", 1815);
-
-// Add a new document with a generated ID
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("", "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("", "Error adding document", e);
-                    }
-                });
-
- */
