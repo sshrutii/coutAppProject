@@ -296,16 +296,13 @@ public class Topics extends AppCompatActivity {
                             idArrayList.add(myTopicNames.get(i).name + "");
                         }
                     } else {
-//>>>>>>> c7f173205a53df72f80963ddd9818e8caf4d20cd
                         Log.d("TAG", "Error getting documents: ", task.getException());
                     }
                 }
             });
 
 
-//<<<<<<< HEAD
-
-            final ArrayAdapter<String> questionsArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,idArrayList);
+            final ArrayAdapter<String> questionsArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, idArrayList);
 
             final ListView topicsListView = (ListView) findViewById(R.id.topicsListView);
 
@@ -318,8 +315,8 @@ public class Topics extends AppCompatActivity {
                     topicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Intent intent = new Intent(Topics.this,QuizActivity.class);
-                            Log.d("idQ",idArrayList.get(position)+"");
+                            Intent intent = new Intent(Topics.this, AdminActivity.class);
+                            Log.d("idQ", idArrayList.get(position) + "");
                             intent.putExtra("id", myTopicNames.get(position).id);
                             intent.putExtra("lang", myTopicNames.get(position).name);
                             startActivity(intent);
@@ -327,36 +324,9 @@ public class Topics extends AppCompatActivity {
                         }
                     });
                 }
-            },3000);
+            }, 3000);
 
         }
-//=======
-//            final ArrayAdapter<String> questionsArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, idArrayList);
-//
-//            final ListView topicsListView = (ListView) findViewById(R.id.topicsListView);
-//>>>>>>> c7f173205a53df72f80963ddd9818e8caf4d20cd
-//
-//            new Handler().postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//
-//
-//                    topicsListView.setAdapter(questionsArrayAdapter);
-//                    topicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                        @Override
-//                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                            Intent intent = new Intent(Topics.this, AdminActivity.class);
-//                            Log.d("idQ", idArrayList.get(position) + "");
-//                            intent.putExtra("id", myTopicNames.get(position).id);
-//                            intent.putExtra("lang", myTopicNames.get(position).name);
-//                            startActivity(intent);
-//
-//                        }
-//                    });
-//                }
-//            }, 3000);
-//
-//        }
 
     }
 
