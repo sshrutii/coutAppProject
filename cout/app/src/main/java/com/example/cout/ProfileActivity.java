@@ -1,10 +1,7 @@
 package com.example.cout;
 
-import android.app.ProgressDialog;
-import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,8 +28,6 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView nameLabel;
     private TextView scoreLabel;
     private TextView emailLabel;
-    private ProgressDialog progressDialog;
-    public Boolean admin = false;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
@@ -42,9 +37,6 @@ public class ProfileActivity extends AppCompatActivity {
         nameLabel = (TextView)findViewById(R.id.name);
         scoreLabel = (TextView)findViewById(R.id.score);
         emailLabel = (TextView)findViewById(R.id.email);
-
-
-        progressDialog = new ProgressDialog(this);
 
         setupUIViews();
 
@@ -73,8 +65,7 @@ public class ProfileActivity extends AppCompatActivity {
                     nameLabel.setText("Name:  "+value.get("name"));
                     scoreLabel.setText("Score:  "+value.get("Score"));
                     emailLabel.setText("Email:  "+currentUser.getEmail());
-                    admin = (Boolean) value.get("isAdmin");
-                    System.out.println(admin);
+
                 }
             }
         });
@@ -101,29 +92,6 @@ public class ProfileActivity extends AppCompatActivity {
             case R.id.menuLogout:                          // menuLogout is the id from menu for logout
                 Logoutfn();
                 break;
-
-            case R.id.admin_switch:
-                if(admin)
-                {
-                    progressDialog.setMessage("Just a moment,Switching to admin mode");
-                    progressDialog.show();
-                    Runnable progressRunnable = new Runnable() {
-
-                        @Override
-                        public void run() {
-                            progressDialog.cancel();
-                        }
-                    };
-
-                    Handler pdCanceller = new Handler();
-                    pdCanceller.postDelayed(progressRunnable, 3000);
-                    Intent intent = new Intent(ProfileActivity.this, SecondActivity.class);
-                    intent.putExtra("admin",admin);
-                    startActivity(intent);
-                }
-                else{
-                    Toast.makeText(this,"You don't have access",Toast.LENGTH_SHORT).show();
-                }
 
         }
         return super.onOptionsItemSelected(item);

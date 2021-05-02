@@ -103,7 +103,7 @@
                         android:text="Run"
                         app:layout_constraintBottom_toTopOf="@+id/tv_result"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.912"
+                        app:layout_constraintHorizontal_bias="0.148"
                         app:layout_constraintStart_toStartOf="parent" />
 
                     <Button
@@ -116,7 +116,6 @@
                         android:text="Submit"
                         app:layout_constraintBottom_toTopOf="@+id/tv_result"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.912"
                         app:layout_constraintStart_toStartOf="parent" />
 
                     <Button
@@ -126,33 +125,7 @@
                         android:layout_margin="10px"
                         android:layout_weight="1"
                         android:background="#62B8F9"
-                        android:text="Discuss"
-                        app:layout_constraintBottom_toTopOf="@+id/tv_result"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.912"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <Button
-                        android:id="@+id/btnApprove"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10px"
-                        android:layout_weight="1"
-                        android:background="#62B8F9"
-                        android:text="Approve"
-                        app:layout_constraintBottom_toTopOf="@+id/tv_result"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.912"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <Button
-                        android:id="@+id/btnDeny"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10px"
-                        android:layout_weight="1"
-                        android:background="#62B8F9"
-                        android:text="Deny"
+                        android:text="Discussion"
                         app:layout_constraintBottom_toTopOf="@+id/tv_result"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.912"

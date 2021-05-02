@@ -42,12 +42,11 @@ import java.util.Map;
 public class CodeActivity extends AppCompatActivity {
     String id1,id2,questName,language;
     TextView tvResult;
-    boolean approval;
 
     EditText etInput,header,answer,problemStatement;
     String answer_1,answer_2,publicTestCase,privateTestCase;
     String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-    Button btnSubmit,btnRun,btnDiscuss,btnApprove,btnDeny;
+    Button btnSubmit,btnRun,btnDiscuss;
     String userName;
     question myQuestion = new question();
     // Access a Cloud Firestore instance from your Activity
@@ -133,9 +132,8 @@ public class CodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_code);
-        int flag =0;
+
         Intent i  = getIntent();
-        flag = i.getIntExtra("flag",0);
         id1   = i.getStringExtra("id1");
         id2   = i.getStringExtra("id2");
         language = i.getStringExtra("language");
@@ -149,8 +147,6 @@ public class CodeActivity extends AppCompatActivity {
         btnDiscuss = findViewById(R.id.btnDiscuss);
         btnSubmit = findViewById(R.id.btn_submit);
         btnRun = findViewById(R.id.btn_run);
-        btnApprove = findViewById(R.id.btnApprove);
-        btnDeny = findViewById(R.id.btnDeny);
         problemStatement = findViewById(R.id.problemStatement);
         answer_1 = "} \n int main() \n { \n";
         answer_2 = "\n return 0; \n }  ";
@@ -161,40 +157,7 @@ public class CodeActivity extends AppCompatActivity {
         header.setText(questionHeader);
         etInput.setText("");
         answer.setText("");
-        System.out.println("flag:"+flag);
-        if(flag ==1 )
-        {
-            btnDeny.setVisibility(View.VISIBLE);
-            btnSubmit.setVisibility(View.GONE);
-            btnApprove.setVisibility(View.VISIBLE);
-        }
-        else{
-            btnSubmit.setVisibility(View.VISIBLE);
-            btnDeny.setVisibility(View.GONE);
-            btnApprove.setVisibility(View.GONE);
-        }
 
-        btnApprove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final DocumentReference docRef = db.collection("topics")
-                        .document(id1).collection("questions")
-                        .document(id2);
-                docRef.update("isApproved",true);
-
-                Toast.makeText(CodeActivity.this,"Question approved for publishing ",Toast.LENGTH_LONG).show();
-                btnApprove.setVisibility(View.GONE);
-                btnDeny.setVisibility(View.GONE);
-
-            }
-        });
-
-        btnDeny.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(CodeActivity.this,"Your question isn't approved for publishing",Toast.LENGTH_SHORT).show();
-            }
-        });
 
         btnDiscuss.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -258,7 +221,6 @@ public class CodeActivity extends AppCompatActivity {
 
             }
         });
-
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
